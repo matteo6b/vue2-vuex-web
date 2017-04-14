@@ -14,6 +14,12 @@ import './styles/app.scss';
 sync(store, router);
 
 Vue.use(VueMaterial);
+Vue.material.registerTheme('default', {
+  primary: 'black',
+  accent: 'red',
+  warn: 'red',
+  background: 'deep-purple',
+});
 
 Vue.config.productionTip = false;
 
@@ -21,6 +27,7 @@ Vue.config.productionTip = false;
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App },
 });

@@ -2,7 +2,9 @@ import Vue from 'vue';
 import axios from 'axios';
 import Router from 'vue-router';
 import NProgress from 'nprogress';
-import Hello from '@/components/Hello';
+import auth from '@/components/auth/main';
+
+import store from './../store';
 
 Vue.use(Router);
 
@@ -12,9 +14,9 @@ const router = new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: [
     {
-      path: '/',
-      name: 'Hello',
-      component: Hello,
+      path: '/auth',
+      name: 'Auth',
+      component: auth,
     },
   ],
 });
@@ -32,22 +34,19 @@ router.beforeEach((to, from, next) => {
   NProgress.start();
   next();
 });
-
-/* router.beforeEach((to, from, next) => {
+router.beforeEach((to, from, next) => {
   // console.log('routing: ' + to + ' -> ' + from)
-  const authenticated = store.getters['auth/isAuthenticated']
+  const authenticated = store.getters['auth/isAuthenticated'];
 
   if (to.name === 'login') {
     if (authenticated) {
-      next({ name: 'dashboard' })
+      next({ name: 'dashboard' });
     }
-  } else {
-    if (to.meta.requiresAuth && !authenticated) {
-      next({ name: 'login' })
-    }
+  } else if (to.meta.requiresAuth && !authenticated) {
+    next({ name: 'login' });
   }
-  next()
-})*/
+  next();
+});
 
 router.afterEach(() => {
   NProgress.done();
