@@ -1,6 +1,8 @@
 <template>
   <div class="page-auth">
+      <span class="md-display-3">Artists Street</span>
     <md-tabs md-centered>
+
   <md-tab md-label="Log In" md-icon="account_circle">
       <login></login>
   </md-tab>
