@@ -18,7 +18,9 @@ const router = new Router({
       name: 'Auth',
       component: auth,
     },
+  { path: '*', redirect: '/auth' },
   ],
+
 });
 /* Vue.http.interceptors.push((request, next) => {
 
@@ -38,12 +40,12 @@ router.beforeEach((to, from, next) => {
   // console.log('routing: ' + to + ' -> ' + from)
   const authenticated = store.getters['auth/isAuthenticated'];
 
-  if (to.name === 'login') {
+  if (to.name === 'auth') {
     if (authenticated) {
-      next({ name: 'dashboard' });
+      // next({ name: 'dashboard' });
     }
   } else if (to.meta.requiresAuth && !authenticated) {
-    next({ name: 'login' });
+    next({ name: 'auth' });
   }
   next();
 });
