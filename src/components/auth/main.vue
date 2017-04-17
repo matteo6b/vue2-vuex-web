@@ -1,6 +1,9 @@
 <template>
-  <div class="page-auth">
+<md-layout md-gutter>
+  <md-layout md-flex="100" md-align="center">
       <span class="md-display-3">Artists Street</span>
+       </md-layout>
+         <md-layout md-flex="100">
     <md-tabs md-centered>
 
   <md-tab md-label="Log In" md-icon="account_circle">
@@ -10,7 +13,9 @@
       <register></register>
   </md-tab>
 </md-tabs>
-  </div>
+   </md-layout>
+
+ </md-layout>
 
 </template>
 <script  src="./main.ctrl.js" lang="babel"  ></script>
