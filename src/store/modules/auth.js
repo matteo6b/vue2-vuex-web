@@ -23,7 +23,7 @@ const getters = {
 // actions
 const actions = {
   register({ dispatch, commit }) {
-    dispatch('error/addNew', { message: 'username' }, { root: true });
+    //dispatch('error/addNew', { message: 'username' }, { root: true });
     return new Promise((resolve, reject) => {
       auth.register({
         username: state.user.username,
@@ -31,20 +31,24 @@ const actions = {
       }, (res) => { resolve(res); commit(); }, (err) => { reject(err); });
     });
   },
-  login({ dispatch, commit }) {
-    dispatch('error/addNew', { message: 'username' }, { root: true });
-    console.log("hola")
+  login({ dispatch, commit },{router}) {
+  //  dispatch('error/addNew', { message: 'username' }, { root: true });
+
     return new Promise((resolve, reject) => {
-      auth.register({
+      auth.login({
         username: state.user.username,
         password: state.user.password,
-      }, (res) => { resolve(res); commit('LOGIN_SUCCES', { result: res }); }, (err) => { reject(err); });
+      }, (res) => { resolve(res); commit(types.AUTH_LOGIN_SUCCESS, { result: res,router:router });  }, (err) => { reject(err); });
     });
   },
   updateValues({ commit }, { value, type }) {
     console.log(value,type);
     commit('MODIFY_USER', {value, type});
   },
+
+  logout({commit}) {
+      commit('LOGOUT')
+  }
 };
 
 // mutations
@@ -53,13 +57,22 @@ const mutations = {
     state.isAuthenticating = false;
   },
   [types.AUTH_LOGIN_SUCCESS](state,result) {
-    localStorage.setItem('token', result.token);
-    state.token = result.token;
-    state.profile = result.profile;
+        console.log(result.result.data,result.router)
+    localStorage.setItem('token', result.result.data.token);
+    state.token = result.result.data.token;
+    result.router.push({name: 'Main'});
+    localStorage.setItem('profile', result.result.data.user);
+
     state.isAuthenticating = false;
   },
   [types.AUTH_MODIFY_USER](state,{value,type}){
     state.user[type]=value;
+  },
+  [types.AUTH_LOGOUT](state) {
+    console.log("hola")
+      localStorage.removeItem('profile');
+      localStorage.removeItem('token');
+      state.token = null
   },
 };
 

@@ -10,7 +10,7 @@ export default {
   methods: {
     ...mapActions({ updateValues: 'auth/updateValues', login: 'auth/login' }),
     submit() {
-      this.login();
+      this.login({ router: this.$router });
     },
 
   },

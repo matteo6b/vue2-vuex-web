@@ -1,3 +1,5 @@
 build/*.js
 config/*.js
 src/store/modules/*.js
+src/components/header.vue
+src/components/sidebar.vue

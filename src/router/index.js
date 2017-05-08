@@ -3,7 +3,9 @@ import axios from 'axios';
 import Router from 'vue-router';
 import NProgress from 'nprogress';
 import auth from '@/components/auth/main';
-
+import main from '@/components/main/main';
+import place from '@/components/places/place';
+import places from '@/components/places/places';
 import store from './../store';
 
 Vue.use(Router);
@@ -18,7 +20,25 @@ const router = new Router({
       name: 'Auth',
       component: auth,
     },
-  { path: '*', redirect: '/auth' },
+    {
+      path: '/main',
+      name: 'Main',
+      component: main,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/place',
+      name: 'place',
+      component: place,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/places',
+      name: 'places',
+      component: places,
+      meta: { requiresAuth: true },
+    },
+  { path: '*', redirect: '/main' },
   ],
 
 });
@@ -40,12 +60,12 @@ router.beforeEach((to, from, next) => {
   // console.log('routing: ' + to + ' -> ' + from)
   const authenticated = store.getters['auth/isAuthenticated'];
 
-  if (to.name === 'auth') {
+  if (to.name === 'Auth') {
     if (authenticated) {
-      // next({ name: 'dashboard' });
+      next({ name: 'Main' });
     }
   } else if (to.meta.requiresAuth && !authenticated) {
-    next({ name: 'auth' });
+    next({ name: 'Auth' });
   }
   next();
 });
