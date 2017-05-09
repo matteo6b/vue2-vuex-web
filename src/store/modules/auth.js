@@ -57,12 +57,11 @@ const mutations = {
     state.isAuthenticating = false;
   },
   [types.AUTH_LOGIN_SUCCESS](state,result) {
-        console.log(result.result.data,result.router)
     localStorage.setItem('token', result.result.data.token);
     state.token = result.result.data.token;
     result.router.push({name: 'Main'});
-    localStorage.setItem('profile', result.result.data.user);
-
+    localStorage.setItem('profile', result.result.data.user.username);
+axios.defaults.headers.common['Authorization'] =  'Bearer'+localStorage.getItem('token');
     state.isAuthenticating = false;
   },
   [types.AUTH_MODIFY_USER](state,{value,type}){

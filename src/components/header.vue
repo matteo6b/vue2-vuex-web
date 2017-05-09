@@ -1,20 +1,24 @@
 <template>
   <div class="phone-viewport">
+
   <md-toolbar>
+      <md-layout md-flex="90" >
      <md-button class="md-icon-button" @click.native="toggleLeftSidenav">
        <md-icon>menu</md-icon>
      </md-button>
 
-     <h2 class="md-title">My App</h2>
+     <h2 class="md-title">Street App</h2>
+     </md-layout>
+<md-layout md-flex="10" md-align="left">
+<md-menu md-align-trigger>
+     <md-button md-menu-trigger> <avatar :username="user" ></avatar></md-button>
 
+  <md-menu-content>
+         <a @click="logout()" href="/auth">Logout</a>
+           </md-menu-content>
 
-     <avatar username="Jane Doe"></avatar>
-
-
-          <a @click="logout()" href="/auth">Logout</a>
-
-
-
+</md-menu>
+</md-layout>
 
    </md-toolbar>
 
@@ -43,6 +47,11 @@ import Avatar from 'vue-avatar'
 export default {
   components: {
    'avatar': Avatar.Avatar
+ },
+ data(){
+   return{
+     user:localStorage.getItem("profile"),
+   }
  },
   methods: {
     toggleLeftSidenav() {
