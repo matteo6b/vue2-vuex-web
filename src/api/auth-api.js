@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 axios.defaults.baseURL = process.env.URL_API;
+axios.defaults.headers.common.Authorization = `JWT ${localStorage.getItem('token')}`;
 
 export default {
   register(params, cb, errCb) {

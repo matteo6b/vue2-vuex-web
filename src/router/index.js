@@ -6,6 +6,8 @@ import auth from '@/components/auth/main';
 import main from '@/components/main/main';
 import place from '@/components/places/place';
 import places from '@/components/places/places';
+import profile from '@/components/user/profile';
+import users from '@/components/user/users';
 import store from './../store';
 
 Vue.use(Router);
@@ -36,6 +38,18 @@ const router = new Router({
       path: '/places',
       name: 'places',
       component: places,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/profile',
+      name: 'profile',
+      component: profile,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/users',
+      name: 'users',
+      component: users,
       meta: { requiresAuth: true },
     },
   { path: '*', redirect: '/main' },
