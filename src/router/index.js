@@ -6,8 +6,8 @@ import auth from '@/components/auth/main';
 import main from '@/components/main/main';
 import place from '@/components/places/place';
 import places from '@/components/places/places';
-import profile from '@/components/user/profile';
-import users from '@/components/user/users';
+import profile from '@/components/artist/profile';
+import users from '@/components/artist/artists';
 import store from './../store';
 
 Vue.use(Router);
