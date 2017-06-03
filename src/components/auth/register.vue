@@ -1,8 +1,8 @@
 <template>
 <form novalidate @submit.stop.prevent="submit">
   <md-input-container>
-    <label>User Name</label>
-    <md-input  @input="updateValues({value:$event,type:'username'})" ></md-input>
+    <label>Email</label>
+    <md-input  @input="updateValues({value:$event,type:'email'})" ></md-input>
   </md-input-container>
   <md-input-container md-has-password>
     <label>Password</label>

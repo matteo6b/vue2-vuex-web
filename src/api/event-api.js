@@ -3,13 +3,13 @@ import axios from 'axios';
 axios.defaults.baseURL = process.env.URL_API;
 
 export default {
-  search(params, cb, errCb) {
-    axios.post('api/v1/event', params)
+  all(cb, errCb) {
+    axios.get('api/event/all')
       .then(response => cb(response)).catch(error => errCb(error));
   },
 
   get(id, params, cb, errCb) {
-    axios.get(`api/v1/event/ ${id}`, params)
+    axios.get(`api/event/ ${id}`, params)
     .then(res => cb(res)).catch(error => errCb(error));
   },
 

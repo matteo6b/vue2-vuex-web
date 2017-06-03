@@ -30,6 +30,7 @@ module.exports = {
       'vue': 'never'
     }],
     "no-console":0,
+    "no-underscore-dangle": [2, { "allow": ["_id","foo_"] }],
     // allow optionalDependencies
     'import/no-extraneous-dependencies': ['error', {
       'optionalDependencies': ['test/unit/index.js']

@@ -11,14 +11,20 @@ export default {
     onDeviceImageChange(e) {
       const files = e.target.files || e.dataTransfer.files;
       const formData = new FormData();
+      formData.append('type', 'artist');
       formData.append('file', files[0]);
 
       imageAPI.create(formData, (res) => {
-        console.log(res);
+        this.imageUrl = `${process.env.URL_API}images/${res.data}`;
       }, err => console.log('err', err));
     },
 
 
+  },
+  data() {
+    return {
+      imageUrl: null,
+    };
   },
 
 };

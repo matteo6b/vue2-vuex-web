@@ -10,6 +10,7 @@ import router from './router';
 import store from './store';
 
 import './styles/app.scss';
+import './../node_modules/font-awesome/scss/font-awesome.scss';
 
 sync(store, router);
 
