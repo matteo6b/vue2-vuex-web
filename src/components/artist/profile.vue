@@ -2,9 +2,11 @@
         <div>
       <span class="md-display-3">Manage User</span>
       <md-layout md-flex="100" >
-        <img class="phoneImg" src="" alt="Photo Devices"/>
-        <label for="FileUpload" class="button large">Upload File</label>
-        <input type="file" id="FileUpload" @change="onDeviceImageChange" class="show-for-sr">
+        <md-layout md-flex="20" >
+        <img class="phoneImg" :src="imageUrl" alt="Photo Devices"/>
+          </md-layout>
+        <label for="FileUpload" class="md-button md-raised md-primary">Upload File</label>
+        <input type="file" id="FileUpload" @change="onDeviceImageChange" v-show="false" class="show-for-sr">
       </md-layout>
         <md-layout md-flex="80" >
 

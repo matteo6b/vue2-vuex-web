@@ -3,7 +3,7 @@ import * as types from './../mutation-types';
 
 const state = {
   user: {
-    username: '',
+    email: '',
     password: '',
     password2: '',
   },
@@ -26,7 +26,7 @@ const actions = {
     //dispatch('error/addNew', { message: 'username' }, { root: true });
     return new Promise((resolve, reject) => {
       auth.register({
-        username: state.user.username,
+        email: state.user.email,
         password: state.user.password,
       }, (res) => { resolve(res); commit(); }, (err) => { reject(err); });
     });
@@ -36,7 +36,7 @@ const actions = {
 
     return new Promise((resolve, reject) => {
       auth.login({
-        username: state.user.username,
+        email: state.user.email,
         password: state.user.password,
       }, (res) => { resolve(res); commit(types.AUTH_LOGIN_SUCCESS, { result: res,router:router });  }, (err) => { reject(err); });
     });
@@ -60,8 +60,8 @@ const mutations = {
     localStorage.setItem('token', result.result.data.token);
     state.token = result.result.data.token;
     result.router.push({name: 'Main'});
-    localStorage.setItem('profile', result.result.data.user.username);
-axios.defaults.headers.common['Authorization'] =  'Bearer'+localStorage.getItem('token');
+    localStorage.setItem('profile', result.result.data.user.email);
+
     state.isAuthenticating = false;
   },
   [types.AUTH_MODIFY_USER](state,{value,type}){

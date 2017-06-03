@@ -8,6 +8,8 @@ import place from '@/components/places/place';
 import places from '@/components/places/places';
 import profile from '@/components/artist/profile';
 import users from '@/components/artist/artists';
+import types from '@/components/types/type';
+import tipes from '@/components/types/types';
 import store from './../store';
 
 Vue.use(Router);
@@ -50,6 +52,24 @@ const router = new Router({
       path: '/users',
       name: 'users',
       component: users,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/type',
+      name: 'type',
+      component: types,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/type/:id',
+      name: 'update type',
+      component: types,
+      meta: { requiresAuth: true },
+    },
+    {
+      path: '/types',
+      name: 'types',
+      component: tipes,
       meta: { requiresAuth: true },
     },
   { path: '*', redirect: '/main' },

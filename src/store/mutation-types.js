@@ -4,3 +4,7 @@ export const AUTH_LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const AUTH_LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const AUTH_LOGOUT = 'LOGOUT';
 export const AUTH_MODIFY_USER = 'MODIFY_USER';
+export const GET_ALL_TYPES = 'GET_ALL';
+export const DELETE_TYPES = 'DELETE_ALL';
+export const GET_TYPE = 'GET ONE';
+export const MODIFY_TYPE = 'MODIFY_TYPE';
